@@ -1,0 +1,16 @@
+alter user root@'localhost' identified by '{{ my_root }}';
+create database scm default character set utf8;
+create database amon default character set utf8;
+create database hive default character set utf8;
+create database hue default character set utf8;
+create database oozie default character set utf8;
+create database sentry default character set utf8;
+grant all privileges on *.* to 'root'@'%' identified by '{{ my_root }}' with grant option;
+grant replication slave on *.* to 'repl'@'%' identified by '{{ my_repl }}';
+grant all privileges on scm.* to scm@'%' identified by '{{ my_scm }}';
+grant all privileges on amon.* to amon@'%' identified by '{{ my_amon }}';
+grant all privileges on hive.* to hive@'%' identified by '{{ my_hive }}';
+grant all privileges on hue.* to hue@'%' identified by '{{ my_hue }}';
+grant all privileges on oozie.* to oozie@'%' identified by '{{ my_oozie }}';
+grant all privileges on sentry.* to sentry@'%' identified by '{{ my_sentry }}';
+flush privileges;

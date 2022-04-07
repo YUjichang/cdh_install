@@ -1,0 +1,16 @@
+[scm_server]
+192.168.100.200 hostname=node01
+
+[scm_agent]
+192.168.100.201 hostname=node02
+192.168.100.202 hostname=node03
+
+[db_server]
+192.168.100.200
+
+[haproxy_server:children]
+db_server
+
+[cdh_servers:children]
+scm_server
+scm_agent

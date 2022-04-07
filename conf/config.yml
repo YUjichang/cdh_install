@@ -1,0 +1,46 @@
+# 安装包，cdh包基本不需要修改，mysql和jdk包按需修改，修改后将实际包放到packages目录下
+packages:
+  mysql: mysql-5.7.32-linux-glibc2.12-x86_64.tar.gz
+  jdk: jdk-8u181-linux-x64.tar.gz
+  cdh-parcels: cdh6-parcels.tar.gz
+  cdh-cm: cloudera-manager-centos7-cm6-rpm.tar.gz
+  # log4j漏洞修复
+  log4j: log4j-2.17.1.tar.gz
+
+# 是否有外部时钟服务器，null即使用cm_server作为本地时间服务器
+ntp_external_server: null
+
+# mysql安装目录，默认/usr/local
+mysql_install_path: /usr/local
+# mysql用户密码
+password:
+  my_root: Passw0rd@root
+  my_repl: Passw0rd@repl
+  my_scm: Passw0rd@scm
+  my_amon: Passw0rd@amon
+  my_hive: Passw0rd@hive
+  my_hue: Passw0rd@hue
+  my_oozie: Passw0rd@oozie
+  my_sentry: Passw0rd@sentry
+
+# ssh参数，默认使用root账号和22端口，如禁止root登陆，配置具有sudo权限的用户
+ssh:
+  port: 22
+  user: root
+
+# 以下参数开启ha才需要配置
+# 是否开启ha，true or false
+ha: false
+
+# 规划的impala部署服务器
+impala:
+  impala_server:
+    - node01
+    - node02
+    - node03
+
+# 规划的hive部署服务器
+hive:
+  hs2_server:
+    - node01
+    - node02

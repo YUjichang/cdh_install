@@ -1,0 +1,15 @@
+2022-03-31 19:03:02,998 sshDistributeLog INFO create ssh key success,private key is /root/.ssh/id_dsa, pub key is /root/.ssh/id_dsa.pub
+2022-03-31 19:03:03,832 sshDistributeLog INFO sshpass install complete.
+2022-03-31 19:03:04,163 sshDistributeLog INFO 192.168.100.200 distribute success.
+2022-03-31 19:03:27,486 sshDistributeLog INFO find ssh public key /root/.ssh/id_dsa.pub.
+2022-03-31 19:03:27,726 sshDistributeLog INFO sshpass is already installed.
+2022-03-31 19:03:27,933 sshDistributeLog INFO 192.168.100.200 distribute success.
+2022-03-31 19:03:30,047 checkLog INFO server check ok.
+2022-03-31 19:03:30,047 installLog INFO cdh_servers start run task: modify_kernel_option.
+2022-03-31 19:03:32,068 installLog INFO cdh_servers run modify_kernel_option success.
+2022-03-31 19:04:06,190 sshDistributeLog INFO find ssh public key /root/.ssh/id_dsa.pub.
+2022-03-31 19:04:06,432 sshDistributeLog INFO sshpass is already installed.
+2022-03-31 19:04:06,647 sshDistributeLog INFO 192.168.100.200 distribute success.
+2022-03-31 19:04:07,208 checkLog INFO server check ok.
+2022-03-31 19:04:07,209 installLog INFO cdh_servers start run task: modify_kernel_option.
+2022-03-31 19:04:09,108 installLog INFO cdh_servers run modify_kernel_option success.

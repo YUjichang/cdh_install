@@ -1,0 +1,78 @@
+#---------------------------------------------------------------------
+# Example configuration for a possible web application.  See the
+# full configuration options online.
+#
+#   http://haproxy.1wt.eu/download/1.4/doc/configuration.txt
+#
+#---------------------------------------------------------------------
+
+#---------------------------------------------------------------------
+# Global settings
+#---------------------------------------------------------------------
+global
+    log         127.0.0.1 local2
+
+    chroot      /var/lib/haproxy
+    pidfile     /var/run/haproxy.pid
+    maxconn     4000
+    user        haproxy
+    group       haproxy
+    daemon
+
+    # turn on stats unix socket
+    stats socket /var/lib/haproxy/stats
+
+#---------------------------------------------------------------------
+# common defaults that all the 'listen' and 'backend' sections will
+# use if not designated in their block
+#---------------------------------------------------------------------
+defaults
+    mode                    http
+    log                     global
+    option                  httplog
+    option                  dontlognull
+    #option http-server-close
+    #option forwardfor       except 127.0.0.0/8
+    option                  redispatch
+    retries                 3
+    timeout http-request    60s
+    timeout queue           5m
+    timeout connect         10s
+    timeout client          720m
+    timeout server          720m
+    timeout http-keep-alive 30m
+    timeout check           10s
+    maxconn                 3000
+
+
+listen stats
+    bind 0.0.0.0:10080
+    mode http
+    option httplog
+    maxconn 5000
+    stats refresh 30s
+    stats  uri /stats
+    stats enable
+    stats hide-version
+    stats auth    admin:admin123
+    stats refresh 30s
+    stats admin if TRUE
+
+listen impalajdbc
+    bind 0.0.0.0:21051
+    mode tcp
+    option tcplog
+    balance source
+    {% for impala in impala_server %}
+server impala_{{ impala }} {{ impala }}:21050 check
+    {% endfor %}
+
+
+listen hs2jdbc
+    bind 0.0.0.0:10001
+    mode tcp
+    option tcplog
+    balance source
+    {% for hive in hs2_server %}
+server hive_{{ hive }} {{ hive }}:10000 check
+    {% endfor %}
